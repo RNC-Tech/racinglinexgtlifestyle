@@ -64,6 +64,7 @@ interface HyperspeedOptions {
 
 interface HyperspeedProps {
   effectOptions?: Partial<HyperspeedOptions>;
+  onPress?: () => void;
 }
 
 const defaultOptions: HyperspeedOptions = {
@@ -1268,7 +1269,7 @@ class App {
   }
 }
 
-const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
+const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {}, onPress }) => {
   const mergedOptions: HyperspeedOptions = {
     ...defaultOptions,
     ...effectOptions,
@@ -1295,6 +1296,11 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
       options.distortion = distortions[options.distortion];
     }
 
+    // Add onPress callback to options
+    if (onPress) {
+      options.onSpeedUp = onPress;
+    }
+
     const myApp = new App(container, options);
     appRef.current = myApp;
     myApp.loadAssets().then(myApp.init);
@@ -1304,7 +1310,7 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
         appRef.current.dispose();
       }
     };
-  }, [mergedOptions]);
+  }, [mergedOptions, onPress]);
 
   return (
     <div
