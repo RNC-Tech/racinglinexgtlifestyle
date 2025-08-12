@@ -8,37 +8,39 @@ export default function Home() {
   const [isHyperspeedActive, setIsHyperspeedActive] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const handleContainerClick = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-        setIsHyperspeedActive(false);
-      } else {
-        audioRef.current.play();
-        setIsPlaying(true);
-        setIsHyperspeedActive(true);
-      }
-    }
+  const handleContainerMouseDown = () => {
+    // Desktop: Activate hyperspeed only
+    setIsHyperspeedActive(true);
+  };
+
+  const handleContainerMouseUp = () => {
+    // Desktop: Deactivate hyperspeed only
+    setIsHyperspeedActive(false);
   };
 
   const handleButtonToggle = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-        setIsHyperspeedActive(false);
-      } else {
-        audioRef.current.play();
-        setIsPlaying(true);
-        setIsHyperspeedActive(true);
+    // Start music if not playing, then toggle hyperspeed effect
+    if (audioRef.current && !isPlaying) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch((error) => {
+            console.log('Audio play failed:', error);
+            // Fallback: try to play on next user interaction
+          });
       }
     }
+    
+    // Toggle hyperspeed effect
+    setIsHyperspeedActive(!isHyperspeedActive);
   };
 
   return (
-    <main className="relative w-full h-screen" onClick={handleContainerClick}>
-      <Hyperspeed/>
+    <main>
+      <Hyperspeed />
       <audio 
         ref={audioRef}
         src="/audio/bgmusic.mp3" 
@@ -55,10 +57,10 @@ export default function Home() {
         </div>
       </div>
       
-      {/* Mobile round button */}
+      {/* Bottom center button for both desktop and mobile */}
       <button
         onClick={handleButtonToggle}
-        className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20 md:hidden rounded-full p-4 shadow-lg border transition-all duration-200 ${
+        className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20 rounded-full p-4 shadow-lg border transition-all duration-200 ${
           isHyperspeedActive 
             ? 'bg-red-500/80 border-red-400 hover:bg-red-500' 
             : 'bg-white/20 border-white/30 hover:bg-white/30'
