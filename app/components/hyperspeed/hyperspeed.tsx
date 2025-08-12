@@ -64,7 +64,6 @@ interface HyperspeedOptions {
 
 interface HyperspeedProps {
   effectOptions?: Partial<HyperspeedOptions>;
-  onPress?: () => void;
 }
 
 const defaultOptions: HyperspeedOptions = {
@@ -99,8 +98,8 @@ const defaultOptions: HyperspeedOptions = {
     background: 0x000000,
     shoulderLines: 0xffffff,
     brokenLines: 0xffffff,
-    leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
-    rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+    leftCars: [0xFEFF3200, 0xFF3200, 0xcFE0000],
+    rightCars: [0xf6cc1b, 0xfcfbde, 0xffffff],
     sticks: 0x03b3c3,
   },
 };
@@ -485,9 +484,7 @@ class CarLights {
     );
     const geometry = new THREE.TubeGeometry(curve, 40, 1, 8, false);
 
-    const instanced = new THREE.InstancedBufferGeometry().copy(
-      geometry as any
-    ) as THREE.InstancedBufferGeometry;
+    const instanced = new THREE.InstancedBufferGeometry().copy(geometry as any) as THREE.InstancedBufferGeometry;
     instanced.instanceCount = options.lightPairsPerRoadWay * 2;
 
     const laneWidth = options.roadWidth / options.lanesPerRoad;
@@ -658,9 +655,7 @@ class LightsSticks {
   init() {
     const options = this.options;
     const geometry = new THREE.PlaneGeometry(1, 1);
-    const instanced = new THREE.InstancedBufferGeometry().copy(
-      geometry as any
-    ) as THREE.InstancedBufferGeometry;
+    const instanced = new THREE.InstancedBufferGeometry().copy(geometry as any) as THREE.InstancedBufferGeometry;
     const totalSticks = options.totalSideLightSticks;
     instanced.instanceCount = totalSticks;
 
@@ -1078,7 +1073,7 @@ class App {
     this.setSize = this.setSize.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
-    
+
     window.addEventListener("resize", this.onWindowResize.bind(this));
   }
 
@@ -1106,7 +1101,7 @@ class App {
     const smaaPass = new EffectPass(
       this.camera,
       new SMAAEffect({
-        preset: SMAAPreset.MEDIUM,
+        preset: SMAAPreset.MEDIUM
       })
     );
     this.renderPass.renderToScreen = false;
@@ -1269,7 +1264,7 @@ class App {
   }
 }
 
-const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {}, onPress }) => {
+const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
   const mergedOptions: HyperspeedOptions = {
     ...defaultOptions,
     ...effectOptions,
@@ -1296,11 +1291,6 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {}, onPress }) => {
       options.distortion = distortions[options.distortion];
     }
 
-    // Add onPress callback to options
-    if (onPress) {
-      options.onSpeedUp = onPress;
-    }
-
     const myApp = new App(container, options);
     appRef.current = myApp;
     myApp.loadAssets().then(myApp.init);
@@ -1310,15 +1300,10 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {}, onPress }) => {
         appRef.current.dispose();
       }
     };
-  }, [mergedOptions, onPress]);
+  }, [mergedOptions]);
 
-  return (
-    <div
-      id="lights"
-      className="w-full h-full"
-      ref={hyperspeed}
-    ></div>
-  );
+  return <div id="lights" ref={hyperspeed}></div>;
 };
 
 export default Hyperspeed;
+
