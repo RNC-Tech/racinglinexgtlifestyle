@@ -21,17 +21,8 @@ export default function Home() {
   const handleButtonToggle = () => {
     // Start music if not playing, then toggle hyperspeed effect
     if (audioRef.current && !isPlaying) {
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch((error) => {
-            console.log('Audio play failed:', error);
-            // Fallback: try to play on next user interaction
-          });
-      }
+      audioRef.current.play();
+      setIsPlaying(true);
     }
     
     // Toggle hyperspeed effect
@@ -43,7 +34,7 @@ export default function Home() {
       <Hyperspeed />
       <audio 
         ref={audioRef}
-        src="/audio/bgmusic.mp3" 
+        src={process.env.NODE_ENV === 'production' ? '/racinglinexgtlifestyle/audio/bgmusic.mp3' : '/audio/bgmusic.mp3'} 
         preload="auto"
         onEnded={() => {
           setIsPlaying(false);
