@@ -33,7 +33,7 @@ const page = () => {
     carShiftX: [-0.8, 0.8],
     carFloorSeparation: [0, 5],
     colors: {
-      roadColor: 0x080808,
+      roadColor: 0x3b3b3b,
       islandColor: 0x0a0a0a,
       background: 0x0b0e10,
       shoulderLines: 0xFFFFFF,
