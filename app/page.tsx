@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Hyperspeed from './components/hyperspeed/hyperspeed'
+import FloatingNavbar from './components/FloatingNavbar'
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -31,6 +32,7 @@ export default function Home() {
 
   return (
     <main>
+      <FloatingNavbar />
       <Hyperspeed />
       <audio 
         ref={audioRef}
