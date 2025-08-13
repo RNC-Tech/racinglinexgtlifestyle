@@ -22,19 +22,19 @@ export default function FloatingNavbar() {
             {/* Navigation buttons - Mobile responsive */}
             <button 
               onClick={() => openModal('carClubs')}
-              className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-full border border-white/20 transition-all duration-200 hover:scale-105 text-sm sm:text-lg font-medium whitespace-nowrap"
+              className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-full border border-white/20 transition-all duration-100 hover:scale-105 text-sm sm:text-lg font-medium whitespace-nowrap"
             >
               Car Clubs
             </button>
             <button 
               onClick={() => openModal('eventInfo')}
-              className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-full border border-white/20 transition-all duration-200 hover:scale-105 text-sm sm:text-lg font-medium whitespace-nowrap"
+              className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-full border border-white/20 transition-all duration-100 hover:scale-105 text-sm sm:text-lg font-medium whitespace-nowrap"
             >
               Event Info
             </button>
             <button 
               onClick={() => openModal('sponsors')}
-              className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-full border border-white/20 transition-all duration-200 hover:scale-105 text-sm sm:text-lg font-medium whitespace-nowrap"
+              className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-full border border-white/20 transition-all duration-100 hover:scale-105 text-sm sm:text-lg font-medium whitespace-nowrap"
             >
               Sponsors
             </button>
