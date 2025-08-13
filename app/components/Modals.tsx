@@ -38,7 +38,7 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                 <div className="flex flex-col bg-white/15 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] overflow-hidden">
                   <div className="w-full h-32 bg-white/10 flex items-center justify-center">
                     <img
-                      src={assetPrefix + "/images/clubs/autoworx.png"}
+                      src={assetPrefix + "/images/clubs/Autoworx.png"}
                       alt="Autoworx"
                       className="h-full object-contain"
                       onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
@@ -68,7 +68,7 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                 <div className="flex flex-col bg-white/15 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] overflow-hidden">
                   <div className="w-full h-32 bg-white/10 flex items-center justify-center">
                     <img
-                      src={assetPrefix + "/images/clubs/hondaboyz.png"}
+                      src={assetPrefix + "/images/clubs/Hondaboyz.png"}
                       alt="HondaBoyz"
                       className="h-full object-contain"
                       onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
