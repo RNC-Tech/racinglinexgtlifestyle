@@ -1,4 +1,5 @@
 "use client";
+import React from 'react';
 
 interface ModalsProps {
   activeModal: string | null;
@@ -6,26 +7,50 @@ interface ModalsProps {
 }
 
 export default function Modals({ activeModal, closeModal }: ModalsProps) {
-  const assetPrefix = process.env.NODE_ENV === 'production' ? '/racinglinexgtlifestyle' : '';
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      closeModal();
-    }
-  };
+	const assetPrefix = process.env.NODE_ENV === 'production' ? '/racinglinexgtlifestyle' : '';
+
+	// Animation state to allow enter/exit animations
+	const [isExiting, setIsExiting] = React.useState(false);
+	const [isEntering, setIsEntering] = React.useState(false);
+	const [lastModal, setLastModal] = React.useState<string | null>(null);
+
+	React.useEffect(() => {
+		if (activeModal) {
+			setLastModal(activeModal);
+			setIsExiting(false);
+			setIsEntering(true);
+			const t = window.setTimeout(() => setIsEntering(false), 30);
+			return () => window.clearTimeout(t);
+		}
+	}, [activeModal]);
+
+	const beginClose = () => {
+		setIsExiting(true);
+		window.setTimeout(() => {
+			setIsExiting(false);
+			closeModal();
+		}, 300);
+	};
+
+	const handleBackdropClick = (e: React.MouseEvent) => {
+		if (e.target === e.currentTarget) {
+			beginClose();
+		}
+	};
 
   return (
     <>
       {/* Car Clubs Modal */}
-      {activeModal === 'carClubs' && (
+      {(activeModal === 'carClubs' || (isExiting && lastModal === 'carClubs')) && (
         <div 
-          className="fixed inset-0 bg-black/20 z-50 flex items-center justify-center p-4"
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${isExiting ? 'opacity-0 bg-black/0' : 'opacity-100 bg-black/20'}`}
           onClick={handleBackdropClick}
         >
-          <div className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl p-6 sm:p-8 max-w-2xl xl:max-w-4xl w-full max-h-[80vh] overflow-y-auto shadow-2xl shadow-white/5">
+          <div className={`bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl p-6 sm:p-8 max-w-2xl xl:max-w-4xl w-full max-h-[80vh] overflow-y-auto shadow-2xl shadow-white/5 transform transition-all duration-300 ${isEntering ? 'opacity-0 scale-95 translate-y-2' : ''} ${isExiting ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">Car Clubs</h2>
               <button
-                onClick={closeModal}
+                onClick={beginClose}
                 className="text-white/80 hover:text-white text-3xl transition-all duration-200 hover:scale-110 bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center backdrop-blur-sm"
               >
                 ×
@@ -101,16 +126,16 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
       )}
 
       {/* Event Info Modal */}
-      {activeModal === 'eventInfo' && (
+      {(activeModal === 'eventInfo' || (isExiting && lastModal === 'eventInfo')) && (
         <div 
-          className="fixed inset-0 bg-black/20 z-50 flex items-center justify-center p-4"
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${isExiting ? 'opacity-0 bg-black/0' : 'opacity-100 bg-black/20'}`}
           onClick={handleBackdropClick}
         >
-          <div className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl p-6 sm:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl shadow-white/5">
+          <div className={`bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl p-6 sm:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl shadow-white/5 transform transition-all duration-300 ${isEntering ? 'opacity-0 scale-95 translate-y-2' : ''} ${isExiting ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">Event Information</h2>
               <button
-                onClick={closeModal}
+                onClick={beginClose}
                 className="text-white/80 hover:text-white text-3xl transition-all duration-200 hover:scale-110 bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center backdrop-blur-sm"
               >
                 ×
@@ -230,16 +255,16 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
       )}
 
       {/* Sponsors Modal */}
-      {activeModal === 'sponsors' && (
+      {(activeModal === 'sponsors' || (isExiting && lastModal === 'sponsors')) && (
         <div 
-          className="fixed inset-0 bg-black/20 z-50 flex items-center justify-center p-4"
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${isExiting ? 'opacity-0 bg-black/0' : 'opacity-100 bg-black/20'}`}
           onClick={handleBackdropClick}
         >
-          <div className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl p-6 sm:p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl shadow-white/5">
+          <div className={`bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl p-6 sm:p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl shadow-white/5 transform transition-all duration-300 ${isEntering ? 'opacity-0 scale-95 translate-y-2' : ''} ${isExiting ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">Sponsors</h2>
               <button
-                onClick={closeModal}
+                onClick={beginClose}
                 className="text-white/80 hover:text-white text-3xl transition-all duration-200 hover:scale-110 bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center backdrop-blur-sm"
               >
                 ×
