@@ -6,6 +6,7 @@ interface ModalsProps {
 }
 
 export default function Modals({ activeModal, closeModal }: ModalsProps) {
+  const assetPrefix = process.env.NODE_ENV === 'production' ? '/racinglinexgtlifestyle' : '';
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       closeModal();
@@ -37,9 +38,10 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                 <div className="flex flex-col bg-white/15 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] overflow-hidden">
                   <div className="w-full h-32 bg-white/10 flex items-center justify-center">
                     <img
-                      src="https://i.imgur.com/oFL4imz.png"
+                      src={assetPrefix + "/images/clubs/autoworx.png"}
                       alt="Autoworx"
                       className="h-full object-contain"
+                      onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
                     />
                   </div>
                   <div className="flex-1 flex flex-col justify-between p-4">
@@ -51,9 +53,10 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                 <div className="flex flex-col bg-white/15 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] overflow-hidden">
                   <div className="w-full h-32 bg-white/10 flex items-center justify-center">
                     <img
-                      src="https://i.imgur.com/3EP3Pt4.png"
+                      src={assetPrefix + "/images/clubs/SouthSHIFT.png"}
                       alt="SouthSHIFT"
                       className="h-full object-contain"
+                      onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
                     />
                   </div>
                   <div className="flex-1 flex flex-col justify-between p-4">
@@ -65,9 +68,10 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                 <div className="flex flex-col bg-white/15 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] overflow-hidden">
                   <div className="w-full h-32 bg-white/10 flex items-center justify-center">
                     <img
-                      src="https://i.imgur.com/olKBukg.png"
+                      src={assetPrefix + "/images/clubs/hondaboyz.png"}
                       alt="HondaBoyz"
                       className="h-full object-contain"
+                      onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
                     />
                   </div>
                   <div className="flex-1 flex flex-col justify-between p-4">
@@ -79,9 +83,10 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                 <div className="flex flex-col bg-white/15 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] overflow-hidden">
                   <div className="w-full h-32 bg-white/10 flex items-center justify-center">
                     <img
-                      src="https://i.imgur.com/PvD5B03.png"
+                      src={assetPrefix + "/images/clubs/TVCGensan.png"}
                       alt="TVC Gensan"
                       className="h-full object-contain"
+                      onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
                     />
                   </div>
                   <div className="flex-1 flex flex-col justify-between p-4">
@@ -117,9 +122,10 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                 {/* Event Image */}
                 <div className="mb-6">
                   <img 
-                    src="https://i.imgur.com/Gl1DHtK.jpeg" 
+                    src={assetPrefix + "/images/partners/EventPoster.jpg"} 
                     alt="ENEOS Regional Autocross Championships" 
                     className="w-full h-auto rounded-xl shadow-lg"
+                    onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
                   />
                 </div>
                 
@@ -177,10 +183,10 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                       <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mr-3 overflow-hidden">
                         {/* Avatar Placeholder with src */}
                         <img
-                          src="https://i.imgur.com/dZjzEjw.jpeg"
+                          src={assetPrefix + "/images/partners/AVIA.jpg"}
                           alt="AVIA Estates Logo"
                           className="w-10 h-10 object-cover rounded-full"
-                          onError={(e) => { (e.target as HTMLImageElement).src = '/avatar-placeholder.png'; }}
+                          onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/avatar.svg'; }}
                         />
                       </div>
                       <p className="text-white/90 font-medium text-left">AVIA Estates</p>
@@ -189,10 +195,10 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                       <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mr-3 overflow-hidden">
                         {/* Avatar Placeholder with src */}
                         <img
-                          src="https://i.imgur.com/6sAvSPG.jpeg"
+                          src={assetPrefix + "/images/partners/Alsons.jpg"}
                           alt="Alsons Development & Investment Corp Logo"
                           className="w-10 h-10 object-cover rounded-full"
-                          onError={(e) => { (e.target as HTMLImageElement).src = '/avatar-placeholder.png'; }}
+                          onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/avatar.svg'; }}
                         />
                       </div>
                       <p className="text-white/90 font-medium text-left">Alsons Development & Investment Corp</p>
@@ -201,10 +207,10 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
                       <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mr-3 overflow-hidden">
                         {/* Avatar Placeholder with src */}
                         <img
-                          src="https://i.imgur.com/MKtQ7h7.jpeg"
+                          src={assetPrefix + "/images/partners/ImprintCustoms.jpg"}
                           alt="Imprints Custom Logo"
                           className="w-10 h-10 object-cover rounded-full"
-                          onError={(e) => { (e.target as HTMLImageElement).src = '/avatar-placeholder.png'; }}
+                          onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/avatar.svg'; }}
                         />
                       </div>
                       <p className="text-white/90 font-medium text-left">Imprints Custom</p>
