@@ -1302,7 +1302,7 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
     };
   }, [mergedOptions]);
 
-  return <div id="lights" ref={hyperspeed}></div>;
+	return <div id="lights" ref={hyperspeed} className="fixed inset-0 bg-black"></div>;
 };
 
 export default Hyperspeed;
