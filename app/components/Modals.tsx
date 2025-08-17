@@ -254,15 +254,15 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
           </div>
       )}
 
-      {/* Sponsors Modal */}
-      {(activeModal === 'sponsors' || (isExiting && lastModal === 'sponsors')) && (
+      {/* Partners Modal */}
+      {(activeModal === 'partners' || (isExiting && lastModal === 'partners')) && (
         <div 
           className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${isExiting ? 'opacity-0 bg-black/0' : 'opacity-100 bg-black/20'}`}
           onClick={handleBackdropClick}
         >
           <div className={`bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl p-6 sm:p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl shadow-white/5 transform transition-all duration-300 ${isEntering ? 'opacity-0 scale-95 translate-y-2' : ''} ${isExiting ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}>
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">Sponsors</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">Partners</h2>
               <button
                 onClick={beginClose}
                 className="text-white/80 hover:text-white text-3xl transition-all duration-200 hover:scale-110 bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center backdrop-blur-sm"
@@ -271,19 +271,55 @@ export default function Modals({ activeModal, closeModal }: ModalsProps) {
               </button>
             </div>
             <div className="space-y-4 text-white/90">
-              <p className="text-lg text-white/95">Meet our amazing sponsors who make these events possible.</p>
+              <p className="text-lg text-white/95">Meet our amazing partners who make these events possible.</p>
               <div className="grid gap-4">
-                <div className="bg-white/15 backdrop-blur-sm p-5 rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02]">
-                  <h3 className="text-xl font-semibold text-white mb-2 drop-shadow-sm">Performance Plus</h3>
-                  <p className="text-white/90">Premium automotive performance parts and accessories</p>
+                <div className="bg-white/15 backdrop-blur-sm p-5 rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] flex items-center">
+                  <img
+                    src={assetPrefix + "/images/partners/eneos_m.jpg"}
+                    alt="Eneos Logo"
+                    className="w-14 h-14 object-contain rounded-xl bg-white/10 mr-4"
+                    onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
+                  />
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-1 drop-shadow-sm">Eneos</h3>
+                    <p className="text-white/90">Official Lubricant Partner</p>
+                  </div>
                 </div>
-                <div className="bg-white/15 backdrop-blur-sm p-5 rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02]">
-                  <h3 className="text-xl font-semibold text-white mb-2 drop-shadow-sm">Racing Dynamics</h3>
-                  <p className="text-white/90">Advanced racing technology and engineering solutions</p>
+                <div className="bg-white/15 backdrop-blur-sm p-5 rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] flex items-center">
+                  <img
+                    src={assetPrefix + "/images/partners/AVIA.jpg"}
+                    alt="AVIA Estates Logo"
+                    className="w-14 h-14 object-contain rounded-xl bg-white/10 mr-4"
+                    onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
+                  />
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-1 drop-shadow-sm">AVIA Estates</h3>
+                    <p className="text-white/90">Venue Partner</p>
+                  </div>
                 </div>
-                <div className="bg-white/15 backdrop-blur-sm p-5 rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02]">
-                  <h3 className="text-xl font-semibold text-white mb-2 drop-shadow-sm">GT Motorsports</h3>
-                  <p className="text-white/90">Luxury automotive lifestyle and performance enhancement</p>
+                <div className="bg-white/15 backdrop-blur-sm p-5 rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] flex items-center">
+                  <img
+                    src={assetPrefix + "/images/partners/Alsons.jpg"}
+                    alt="Alsons Development & Investment Corp Logo"
+                    className="w-14 h-14 object-contain rounded-xl bg-white/10 mr-4"
+                    onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
+                  />
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-1 drop-shadow-sm">Alsons Development & Investment Corp</h3>
+                    <p className="text-white/90">Venue Partner</p>
+                  </div>
+                </div>
+                <div className="bg-white/15 backdrop-blur-sm p-5 rounded-2xl border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-[1.02] flex items-center">
+                  <img
+                    src={assetPrefix + "/images/partners/ImprintCustoms.jpg"}
+                    alt="Imprints Custom Logo"
+                    className="w-14 h-14 object-contain rounded-xl bg-white/10 mr-4"
+                    onError={(e) => { (e.target as HTMLImageElement).src = assetPrefix + '/images/placeholder/image.svg'; }}
+                  />
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-1 drop-shadow-sm">Imprints Custom</h3>
+                    <p className="text-white/90">Official Merchandise Partner</p>
+                  </div>
                 </div>
               </div>
             </div>
